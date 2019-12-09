@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/hand_crm_springboot?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    initialSize: 20
+    #始终保留在池中的最小连接数，池中的连接数量若低于此值则创建新的连接
+    minIdle: 20
+    #连接池同一时间可分配的最大活跃连接数
+    maxActive: 200
+    #最大等待时间
+    maxWait: 60000
