@@ -1,0 +1,12 @@
+2019-12-10 10:01:56.163 [main] INFO  com.hand.crm.springboot.test.demo.DemoApplication - Starting DemoApplication on DESKTOP-O7IQHT2 with PID 33640 (D:\springboot01\target\classes started by LDH in D:\springboot01)
+2019-12-10 10:01:56.169 [main] INFO  com.hand.crm.springboot.test.demo.DemoApplication - No active profile set, falling back to default profiles: default
+2019-12-10 10:01:58.128 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+2019-12-10 10:01:58.140 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2019-12-10 10:01:58.141 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-12-10 10:01:58.145 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2019-12-10 10:01:58.265 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-12-10 10:01:58.265 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1868 ms
+2019-12-10 10:01:58.720 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-10 10:01:59.070 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2019-12-10 10:01:59.097 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+2019-12-10 10:01:59.100 [main] INFO  com.hand.crm.springboot.test.demo.DemoApplication - Started DemoApplication in 3.984 seconds (JVM running for 7.074)
