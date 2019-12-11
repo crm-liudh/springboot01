@@ -9,8 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jms.Queue;
+import javax.jms.Topic;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -27,6 +30,14 @@ public class UserController {
 
     @Autowired
     RedisClient redisClient;
+
+    @Autowired
+    private Queue queue;
+    @Autowired
+    private JmsMessagingTemplate jmsMessagingTemplate;
+
+    @Autowired
+    private Topic topic;
 
     //打印日志
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -98,32 +109,21 @@ public class UserController {
         stringRedisTemplate.opsForValue().set("users:u",u);
         return userService.insertUser(users);
     }
-//
-//    @PutMapping(value = "/demo/setUser")
-//    public HashMap<String,Object> setUserInfoPut(@RequestBody Users users){
-//        HashMap<String,Object> result = new HashMap<>();
-//        try {
-//            result.put("result", users);
-//            result.put("success", true);
-//        }catch (Exception e){
-//            result.put("msg",e.getMessage());
-//            result.put("success",false);
-//        }finally {
-//            return result;
-//        }
-//    }
-//
-//    @DeleteMapping(value = "/demo/setUser")
-//    public HashMap<String,Object> setUserInfoDel(@RequestBody Users users){
-//        HashMap<String,Object> result = new HashMap<>();
-//        try {
-//            result.put("result", users);
-//            result.put("success", true);
-//        }catch (Exception e){
-//            result.put("msg",e.getMessage());
-//            result.put("success",false);
-//        }finally {
-//            return result;
-//        }
-//    }
+
+
+    @RequestMapping("send")
+    public void send(String message) {
+        //方法一：添加消息到消息队列
+        jmsMessagingTemplate.convertAndSend(queue, message);
+        //方法二：这种方式不需要手动创建queue，系统会自行创建名为test的队列
+        //jmsMessagingTemplate.convertAndSend("test", name);
+    }
+
+    @RequestMapping("/sends")
+    public void findOneUser(String message) {
+        //jmsTemplate.convertAndSend("user", user);//这个是p2p
+        //使用topic
+        this.jmsMessagingTemplate.convertAndSend(this.topic,message);
+        //return message;
+    }
 }
